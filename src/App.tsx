@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import { Navigate, Route, Routes, useRoutes } from "react-router-dom";
-import routes from "tempo-routes";
+// Import tempo routes conditionally to avoid build issues
+const routes =
+  import.meta.env.VITE_TEMPO === "true" ? require("tempo-routes").default : [];
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import Dashboard from "./components/pages/dashboard";
@@ -50,7 +52,9 @@ function AppRoutes() {
         />
         <Route path="/success" element={<Success />} />
       </Routes>
-      {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
+      {import.meta.env.VITE_TEMPO === "true" &&
+        routes.length > 0 &&
+        useRoutes(routes)}
     </>
   );
 }

@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronRight, Settings, User, ChessKnight } from "lucide-react";
+import { ChevronRight, Settings, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../supabase/auth";
 

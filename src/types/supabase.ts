@@ -9,7 +9,68 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      games: {
+        Row: {
+          black_player_id: string | null
+          created_at: string | null
+          current_fen: string
+          id: string
+          status: string
+          white_player_id: string | null
+        }
+        Insert: {
+          black_player_id?: string | null
+          created_at?: string | null
+          current_fen?: string
+          id?: string
+          status?: string
+          white_player_id?: string | null
+        }
+        Update: {
+          black_player_id?: string | null
+          created_at?: string | null
+          current_fen?: string
+          id?: string
+          status?: string
+          white_player_id?: string | null
+        }
+        Relationships: []
+      }
+      moves: {
+        Row: {
+          explanation: string | null
+          fen_before: string
+          game_id: string
+          id: string
+          move_san: string
+          timestamp: string | null
+        }
+        Insert: {
+          explanation?: string | null
+          fen_before: string
+          game_id: string
+          id?: string
+          move_san: string
+          timestamp?: string | null
+        }
+        Update: {
+          explanation?: string | null
+          fen_before?: string
+          game_id?: string
+          id?: string
+          move_san?: string
+          timestamp?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "moves_game_id_fkey"
+            columns: ["game_id"]
+            isOneToOne: false
+            referencedRelation: "games"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
